@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+/*google fonts*/
+
+* {
+  box-sizing: border-box;
+}
+
+hr {
+  border: none;
+  height: 0.5px;
+  /* Set the hr color */
+  color: #333;
+  /* old IE */
+  background-color: #333;
+  /* Modern Browsers */
+  margin: 15px 0;
+}
+
+h4 {
+  margin: 15px 5px 10px 5px;
+  border-bottom: 1px solid #aaa;
+}
+
+h4 > img {
+  width: 20px;
+  margin-right: 5px;
+}
+
+input[type=text],
+input[type=number],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+select {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+p {
+  font-size: 0.9em;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+label {
+  padding: 5px 0;
+  display: inline-block;
+}
+
+input[type=submit],
+input[type=button] {
+  background-color: #04AA6D;
+  color: white;
+  margin-top: 10px;
+  padding: 20px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+input[type=submit]:hover,
+input[type=button]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  font-size: 0.9em;
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+.col-100 {
+  font-size: 0.9em;
+  float: left;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.col-100 > div {
+  float: left;
+  margin-right: 7px;
+}
+
+.col-100 > div > span {
+  display: inline-block;
+  min-width: 46px;
+}
+
+.col-75 > b {
+    font-size: 0.95em;
+    display: block;
+    margin: 5px 2px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.fleft {
+  float: left;
+}
+
+.fright {
+  float: right;
+}
+
+.hide {
+  display: none;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+
+  .col-25,
+  .col-75,
+  input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+table.type01 {
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-align: left;
+  line-height: 1.5;
+  margin: 20px 10px;
+  font-size: 0.85em;
+}
+
+table.type01 th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+}
+
+table.type01 td {
+  width: 350px;
+  padding: 5px;
+  vertical-align: top;
+  border: 1px solid #ccc;
+}

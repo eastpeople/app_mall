@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+	<meta charset="UTF-8">
+    <title>우마무스메 랭크 점수 계산기</title>
+	<link href="css/style.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/parsley.min.js"></script>
+	<script src="js/parsley.ko.js"></script>
+</head>
+
+<body>
+	
+	<div class="row">
+		<h3 class="fright">우마무스메 랭크 점수 계산기</h3>
+	</div>
+	<div class="container">
+		
+		<div id="page1">
+			<div class="row">
+				<div class="col-100">
+					<h4>우마무스메 정보</h4>
+				</div>
+				<div class="col-100">
+					★
+					<select id="uma-star">
+						<option value="1">★☆☆☆☆</option>
+						<option value="2">★★☆☆☆</option>
+						<option value="3" selected>★★★☆☆</option>
+						<option value="4">★★★★☆</option>
+						<option value="5">★★★★★</option>
+					</select>
+				</div>
+				
+				<div class="col-100">
+					고유스킬 레벨
+					<select id="uma-unique-skill">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+					</select>
+				</div>
+
+				<div class="col-100">
+					<div>
+						<span>잔디</span>
+						<select id="uma-turf">
+							<option value="110">S, A</option>
+							<option value="90">B, C</option>
+							<option value="80">D, E, F</option>
+							<option value="70">G</option>
+						</select>
+					</div>
+					<div>
+						<span>더트</span>
+						<select id="uma-dirt">
+							<option value="110">S, A</option>
+							<option value="90">B, C</option>
+							<option value="80">D, E, F</option>
+							<option value="70" selected>G</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-100">
+					<div>
+						<span>단거리</span>
+						<select id="uma-sprint">
+							<option value="110">S, A</option>
+							<option value="90">B, C</option>
+							<option value="80">D, E, F</option>
+							<option value="70">G</option>
+						</select>
+					</div>
+					<div>
+						<span>마일</span>
+						<select id="uma-mile">
+							<option value="110">S, A</option>
+							<option value="90">B, C</option>
+							<option value="80">D, E, F</option>
+							<option value="70">G</option>
+						</select>
+					</div>
+					<div>
+						<span>중거리</span>
+						<select id="uma-intermediate">
+							<option value="110">S, A</option>
+							<option value="90">B, C</option>
+							<option value="80">D, E, F</option>
+							<option value="70">G</option>
+						</select>
+					</div>
+					<div>
+						<span>장거리</span>
+						<select id="uma-long">
+							<option value="110">S, A</option>
+							<option value="90">B, C</option>
+							<option value="80">D, E, F</option>
+							<option value="70">G</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-100">
+					<div>
+						<span>도주</span>
+						<select id="uma-runaway">
+							<option value="110">S, A</option>
+							<option value="90">B, C</option>
+							<option value="80">D, E, F</option>
+							<option value="70">G</option>
+						</select>
+					</div>
+					<div>
+						<span>선행</span>
+						<select id="uma-front-runner">
+							<option value="110">S, A</option>
+							<option value="90">B, C</option>
+							<option value="80">D, E, F</option>
+							<option value="70">G</option>
+						</select>
+					</div>
+					<div>
+						<span>선입</span>
+						<select id="uma-come-front-behind">
+							<option value="110">S, A</option>
+							<option value="90">B, C</option>
+							<option value="80">D, E, F</option>
+							<option value="70">G</option>
+						</select>
+					</div>
+					<div>
+						<span>추입</span>
+						<select id="uma-closer">
+							<option value="110">S, A</option>
+							<option value="90">B, C</option>
+							<option value="80">D, E, F</option>
+							<option value="70">G</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-100">
+					<h4>능력치</h4>
+				</div>
+				<div class="col-100">
+					<label>스피드 <input type="number" pattern="\d*" id="uma-speed" maxlength="3"
+							style="width: 70px;" required="" data-parsley-range="[10, 1200]">
+					</label>
+					<label>스태미나 <input type="number" pattern="\d*" id="uma-stamina" maxlength="3"
+							style="width: 70px;" required="" data-parsley-range="[10, 1200]">
+					</label>
+					<label>파워 <input type="number" pattern="\d*" id="uma-power" maxlength="3"
+							style="width: 70px;" required="" data-parsley-range="[10, 1200]">
+					</label>
+					<label>근성 <input type="number" pattern="\d*" id="uma-toughness" maxlength="3"
+							style="width: 70px;" required="" data-parsley-range="[10, 1200]">
+					</label>
+					<label>지능 <input type="number" pattern="\d*" id="uma-intellect" maxlength="3"
+							style="width: 70px;" required="" data-parsley-range="[10, 1200]">
+					</label>
+				</div>
+				
+				<div class="col-100">
+					<h4>획득 스킬</h4>
+				</div>
+
+				<div class="col-100">
+					<div>
+						스킬 분류
+						<select></select>
+					</div>
+					<div>
+						거리 또는 각질
+						<select></select>
+					</div>
+					<div>
+						스킬 이름
+						<select></select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<h4>랭크</h4>
+		</div>
+
+	</div>
+
+</body>
+
+<script>
+	
+	$(function () {
+		
+	});
+
+</script>
+
+</html>
