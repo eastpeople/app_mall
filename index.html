@@ -7,6 +7,7 @@
     <title>우마무스메 랭크 점수 계산기</title>
 	<link href="css/style.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/umamusume_point.js"></script>
 	<script src="js/parsley.min.js"></script>
 	<script src="js/parsley.ko.js"></script>
 </head>
@@ -25,7 +26,7 @@
 				</div>
 				<div class="col-100">
 					★
-					<select id="uma-star">
+					<select name="uma-star">
 						<option value="1">★☆☆☆☆</option>
 						<option value="2">★★☆☆☆</option>
 						<option value="3" selected>★★★☆☆</option>
@@ -36,7 +37,7 @@
 				
 				<div class="col-100">
 					고유스킬 레벨
-					<select id="uma-unique-skill">
+					<select name="uma-star-skill">
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -44,6 +45,7 @@
 						<option value="5">5</option>
 						<option value="6">6</option>
 					</select>
+					<strong>0</strong><small>pt</small>
 				</div>
 
 				<div class="col-100">
@@ -62,7 +64,7 @@
 							<option value="110">S, A</option>
 							<option value="90">B, C</option>
 							<option value="80">D, E, F</option>
-							<option value="70" selected>G</option>
+							<option value="70">G</option>
 						</select>
 					</div>
 				</div>
@@ -149,21 +151,36 @@
 					<h4>능력치</h4>
 				</div>
 				<div class="col-100">
-					<label>스피드 <input type="number" pattern="\d*" id="uma-speed" maxlength="3"
-							style="width: 70px;" required="" data-parsley-range="[10, 1200]">
-					</label>
-					<label>스태미나 <input type="number" pattern="\d*" id="uma-stamina" maxlength="3"
-							style="width: 70px;" required="" data-parsley-range="[10, 1200]">
-					</label>
-					<label>파워 <input type="number" pattern="\d*" id="uma-power" maxlength="3"
-							style="width: 70px;" required="" data-parsley-range="[10, 1200]">
-					</label>
-					<label>근성 <input type="number" pattern="\d*" id="uma-toughness" maxlength="3"
-							style="width: 70px;" required="" data-parsley-range="[10, 1200]">
-					</label>
-					<label>지능 <input type="number" pattern="\d*" id="uma-intellect" maxlength="3"
-							style="width: 70px;" required="" data-parsley-range="[10, 1200]">
-					</label>
+					<div>
+						<span>스피드</span>
+						<input type="number" pattern="\d*" name="uma-stat-speed" maxlength="4"
+							style="width: 48px;" required="" data-parsley-range="[10, 1200]">
+						<strong>0</strong><small>pt</small>
+					</div>
+					<div>
+						<span>스태미나</span>
+						<input type="number" pattern="\d*" name="uma-stat-stamina" maxlength="4"
+							style="width: 48px;" required="" data-parsley-range="[10, 1200]">
+						<strong>0</strong><small>pt</small>
+					</div>
+					<div>
+						<span>파워</span>
+						<input type="number" pattern="\d*" name="uma-stat-power" maxlength="4"
+							style="width: 48px;" required="" data-parsley-range="[10, 1200]">
+						<strong>0</strong><small>pt</small>
+					</div>
+					<div>
+						<span>근성</span>
+						<input type="number" pattern="\d*" name="uma-stat-toughness" maxlength="4"
+							style="width: 48px;" required="" data-parsley-range="[10, 1200]">
+						<strong>0</strong><small>pt</small>
+					</div>
+					<div>
+						<span>지능</span>
+						<input type="number" pattern="\d*" name="uma-stat-intellect" maxlength="4"
+							style="width: 48px;" required="" data-parsley-range="[10, 1200]">
+						<strong>0</strong><small>pt</small>
+					</div>
 				</div>
 				
 				<div class="col-100">
@@ -172,34 +189,21 @@
 
 				<div class="col-100">
 					<div>
-						스킬 분류
-						<select></select>
-					</div>
-					<div>
-						거리 또는 각질
-						<select></select>
-					</div>
-					<div>
-						스킬 이름
-						<select></select>
+						종류
+						<select name="uma-skill-cat1" style="width: 140px;"></select>
+						거리/각질
+						<select name="uma-skill-cat2" style="width: 80px;"></select>
+						
+						<select name="uma-skill-list" style="width: 280px;"></select>
+						<strong></strong><small>pt</small>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<h4>랭크</h4>
 		</div>
 
 	</div>
 
 </body>
 
-<script>
-	
-	$(function () {
-		
-	});
-
-</script>
 
 </html>

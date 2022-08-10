@@ -30,14 +30,14 @@ input[type=text],
 input[type=number],
 textarea {
   width: 100%;
-  padding: 12px;
+  padding: 6px;
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
 }
 
 select {
-  padding: 12px;
+  padding: 6px;
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
@@ -57,11 +57,12 @@ p {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+  text-align: right;
 }
 
 label {
   padding: 5px 0;
-  display: inline-block;
+  display: block;
 }
 
 input[type=submit],
@@ -101,7 +102,7 @@ input[type=button]:hover {
 }
 
 .col-100 {
-  font-size: 0.9em;
+  font-size: 0.85em;
   float: left;
   width: 100%;
   margin-top: 6px;
@@ -109,12 +110,26 @@ input[type=button]:hover {
 
 .col-100 > div {
   float: left;
-  margin-right: 7px;
+  padding: 3px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  background-color: rgb(221, 221, 221);
+  border-radius: 4px;
+  /*border-right: 0.5px solid rgb(218, 222, 230);*/
 }
 
 .col-100 > div > span {
   display: inline-block;
-  min-width: 46px;
+  min-width: 55px;
+}
+
+.col-100 strong {
+  display: inline-block;
+  font-size: 0.95em;
+  padding-right: 1px;
+  min-width: 28px;
+  text-align: right;
+  letter-spacing: -1px;
 }
 
 .col-75 > b {
