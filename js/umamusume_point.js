@@ -130,7 +130,7 @@ $(function() {
         .then(response => response.json())
         .then(data => {
             lstSkill = JSON.parse(JSON.stringify(data));
-            category1();
+            //category1();
         })
         .catch(error => console.log(error));
 
@@ -141,7 +141,7 @@ $(function() {
             cat1.add(item.mainCatKor + "|" + item.mainCatCode);
         });
         
-        $("#div-skills").append('<div class="p100">종류 <select name="uma-skill-cat1"></select> 거리각질 <select name="uma-skill-cat2"></select><br> <select name="uma-skill-list" ></select> <strong></strong><small>pt</small> </div>');
+        $("#div-skills").append('<div class="p100">종류 <select name="uma-skill-cat1"></select> 거리각질 <select name="uma-skill-cat2"></select><br> <select name="uma-skill-list" ></select> <strong></strong><small>pt</small> <button name="delSkill">삭제</button></div>');
         var last_ele = $("#div-skills").find("select[name='uma-skill-cat1']").last();
         $(last_ele).empty();
         cat1.forEach(function(value) {
@@ -184,11 +184,18 @@ $(function() {
         $("select[name='uma-skill-list']").change(function() {
             skillPoint();
         });
+
+        $("button[name='delSkill']").click(function() {
+            $(this).parent().remove();
+            totalPoint();
+        });
     }
 
     $("#running-style select, #race select, #track select").change(function() {
         skillPoint();
     });
+
+    
     
     function skills(main_ele, sub_ele) {
         var cat1 = new Set();
