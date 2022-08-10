@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<div id="rank" style="position: fixed; left: 0px; top: 0px; background-color: antiquewhite; padding: 5px; display: block; width: 120px;">
+	<div id="rank" style="position: fixed; left: 0px; top: 0px; background-color: antiquewhite; padding: 5px; display: block; width: 100px;">
 		<strong></strong> <span></span><small>pt</small>
 	</div>
 	<div class="row">
@@ -50,7 +50,7 @@
 					<strong>0</strong><small>pt</small>
 				</div>
 
-				<div class="col-100">
+				<div id="track" class="col-100">
 					<div>
 						<span>잔디</span>
 						<select id="uma-turf">
@@ -71,7 +71,7 @@
 					</div>
 				</div>
 
-				<div class="col-100">
+				<div id="race" class="col-100">
 					<div>
 						<span>단거리</span>
 						<select id="uma-sprint">
@@ -110,7 +110,7 @@
 					</div>
 				</div>
 
-				<div class="col-100">
+				<div id="running-style" class="col-100">
 					<div>
 						<span>도주</span>
 						<select id="uma-runaway">
@@ -189,16 +189,20 @@
 					<h4>획득 스킬</h4>
 				</div>
 
-				<div class="col-100">
-					<div>
+				<div id="div-skills" class="col-100">
+					<!-- <div class="p100">
 						종류
-						<select name="uma-skill-cat1" style="width: 140px;"></select>
-						거리/각질
-						<select name="uma-skill-cat2" style="width: 80px;"></select>
+						<select name="uma-skill-cat1"></select>
+						거리각질
+						<select name="uma-skill-cat2"></select>
+						<br>
 						
-						<select name="uma-skill-list" style="width: 280px;"></select>
+						<select name="uma-skill-list" ></select>
 						<strong></strong><small>pt</small>
-					</div>
+					</div> -->
+				</div>
+				<div class="col-100">
+					<button id="addSkill">스킬 추가</button>
 				</div>
 			</div>
 		</div>

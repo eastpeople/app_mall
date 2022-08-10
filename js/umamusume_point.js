@@ -134,87 +134,109 @@ $(function() {
         })
         .catch(error => console.log(error));
 
-
+    
     function category1() {
         var cat1 = new Set();
         lstSkill.forEach(function (item, index) {
             cat1.add(item.mainCatKor + "|" + item.mainCatCode);
         });
         
-        $("select[name='uma-skill-cat1']").empty();
+        $("#div-skills").append('<div class="p100">종류 <select name="uma-skill-cat1"></select> 거리각질 <select name="uma-skill-cat2"></select><br> <select name="uma-skill-list" ></select> <strong></strong><small>pt</small> </div>');
+        var last_ele = $("#div-skills").find("select[name='uma-skill-cat1']").last();
+        $(last_ele).empty();
         cat1.forEach(function(value) {
-            $("select[name='uma-skill-cat1']").append($('<option>', { 
+            $(last_ele).append($('<option>', { 
                 value: value.replace(/^.+\|/g, ""),
                 text : value.replace(/\|.+$/g, "") 
             }));
         });
 
-        category2($("select[name='uma-skill-cat1']").val());
+        category2(last_ele);
     }
-
-    $("select[name='uma-skill-cat1']").change(function() {
-        category2($(this).val());
-    });
     
-    function category2(mainCatCode) {
+    function category2(ele) {
         var cat1 = new Set();
+        var catva = $(ele).val();
+        
         lstSkill.forEach(function (item, index) {
-            if (mainCatCode == item.mainCatCode) {
+            if (catva == item.mainCatCode) {
                 cat1.add(item.subCatKor + "|" + item.subCatCode);
             }
         });
-        
-        $("select[name='uma-skill-cat2']").empty();
+        var next_ele = $(ele).next();
+        $(next_ele).empty();
         cat1.forEach(function(value) {
-            $("select[name='uma-skill-cat2']").append($('<option>', { 
+            $(next_ele).append($('<option>', { 
                 value: value.replace(/^.+\|/g, ""),
                 text : value.replace(/\|.+$/g, "") 
             }));
         });
-        skills($("select[name='uma-skill-cat1']").val(), $("select[name='uma-skill-cat2']").val());
+        skills(ele, next_ele);
+
+        $("select[name='uma-skill-cat1']").change(function() {
+            category2(this);
+        });
+
+        $("select[name='uma-skill-cat2']").change(function() {
+            skills($(this).prev(), this);
+        });
+
+        $("select[name='uma-skill-list']").change(function() {
+            skillPoint();
+        });
     }
 
-    $("select[name='uma-skill-cat2']").change(function() {
-        skills($("select[name='uma-skill-cat1']").val(), $(this).val());
+    $("#running-style select, #race select, #track select").change(function() {
+        skillPoint();
     });
     
-    function skills(mainCatCode, subCatCode) {
+    function skills(main_ele, sub_ele) {
         var cat1 = new Set();
         lstSkill.forEach(function (item, index) {
-            if (mainCatCode == item.mainCatCode && subCatCode == item.subCatCode) {
+            if ($(main_ele).val() == item.mainCatCode && $(sub_ele).val() == item.subCatCode) {
                 cat1.add(item.nameKor + "|" + item.point);
             }
         });
         
-        $("select[name='uma-skill-list']").empty();
+        var last_ele = $(sub_ele).next().next();
+        $(last_ele).empty();
         cat1.forEach(function(value) {
-            $("select[name='uma-skill-list']").append($('<option>', { 
+            $(last_ele).append($('<option>', { 
                 value: value.replace(/^.+\|/g, ""),
                 text : value.replace(/\|.+$/g, "") 
             }));
         });
 
-        var lst = $("select[name='uma-skill-list']");
-        skillPoint(parseFloat($(lst).val()));
+        skillPoint();
     }
 
-    $("select[name='uma-skill-list']").change(function() {
-        skillPoint(parseFloat($(this).val()));
-    });
+    function skillPoint() {
+        $("select[name='uma-skill-cat1']").each(function(index, ele) {
+            var cat2val = $(ele).next().val();
+            var origin_pt = parseFloat($(ele).parent().find("select").last().val());
+            
+            var pt = origin_pt;
+            if (cat2val != "common") {
+                var per = parseFloat($("#uma-" + cat2val).val());
+                pt = Math.round(origin_pt * per / 100);
+            }
+            $(ele).nextAll("strong").first().text(pt);
 
-    function skillPoint(origin_pt) {
-        var cat2 = $("select[name='uma-skill-cat2']");
-        var cat2val = $(cat2).val();
+        });
+
+        // var cat2 = $("select[name='uma-skill-cat1']");
+        // var cat2val = $(cat2).val();
         
-        var pt = origin_pt;
-        if (cat2val != "common") {
-            var per = parseFloat($("#uma-" + cat2val).val());
-            console.log(per);
-            pt = Math.round(origin_pt * per / 100);
-        }
-        $("select[name='uma-skill-list']").next().text(pt);
+        // var pt = origin_pt;
+        // if (cat2val != "common") {
+        //     var per = parseFloat($("#uma-" + cat2val).val());
+        //     console.log(per);
+        //     pt = Math.round(origin_pt * per / 100);
+        // }
+        // $("select[name='uma-skill-list']").next().text(pt);
 
         totalPoint();
+        
     }
 
     function rank(pt) {
@@ -229,4 +251,9 @@ $(function() {
         $("#rank").find("strong").text(rank(tp)[0]);
         $("#rank").find("span").text(tp);
     }
+
+    $("#addSkill").on("click", function() {
+        category1();
+    });
+    
 });
