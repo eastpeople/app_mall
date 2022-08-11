@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+button, html [type="button"] {
+  -webkit-appearance: none;   
+}
+
 hr {
   border: none;
   height: 0.5px;
@@ -17,7 +21,7 @@ hr {
 }
 
 h4 {
-  margin: 15px 5px 10px 5px;
+  margin: 15px 5px 10px 0;
   border-bottom: 1px solid #aaa;
 }
 
@@ -104,7 +108,7 @@ input[type=button]:hover {
 }
 
 .col-100 {
-  font-size: 0.85em;
+  font-size: 1em;
   float: left;
   width: 100%;
   margin-top: 6px;
@@ -113,8 +117,8 @@ input[type=button]:hover {
 .col-100 > div {
   float: left;
   padding: 2px;
-  margin-right: 2px;
-  margin-bottom: 2px;
+  margin-right: 5px;
+  margin-bottom: 4px;
   background-color: rgb(221, 221, 221);
   border-radius: 4px;
   /*border-right: 0.5px solid rgb(218, 222, 230);*/
@@ -125,6 +129,7 @@ input[type=button]:hover {
 }
 
 .col-100 > div > span {
+  font-size: 0.83em;
   display: inline-block;
   min-width: 55px;
 }

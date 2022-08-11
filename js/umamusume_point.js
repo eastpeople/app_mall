@@ -141,7 +141,7 @@ $(function() {
             cat1.add(item.mainCatKor + "|" + item.mainCatCode);
         });
         
-        $("#div-skills").append('<div class="p100">종류 <select name="uma-skill-cat1"></select> 거리각질 <select name="uma-skill-cat2"></select><br> <select name="uma-skill-list" ></select> <strong></strong><small>pt</small> <button name="delSkill">삭제</button></div>');
+        $("#div-skills").append('<div class="p100"> <select name="uma-skill-cat1"></select>  <select name="uma-skill-cat2"></select><br> <select name="uma-skill-list" ></select> <strong></strong><small>pt</small> <button name="delSkill">삭제</button></div>');
         var last_ele = $("#div-skills").find("select[name='uma-skill-cat1']").last();
         $(last_ele).empty();
         cat1.forEach(function(value) {
@@ -163,7 +163,7 @@ $(function() {
                 cat1.add(item.subCatKor + "|" + item.subCatCode);
             }
         });
-        var next_ele = $(ele).next();
+        var next_ele = $(ele).nextAll("select").first();
         $(next_ele).empty();
         cat1.forEach(function(value) {
             $(next_ele).append($('<option>', { 
@@ -198,29 +198,30 @@ $(function() {
     
     
     function skills(main_ele, sub_ele) {
-        var cat1 = new Set();
+        var arr3 = new Array();
         lstSkill.forEach(function (item, index) {
             if ($(main_ele).val() == item.mainCatCode && $(sub_ele).val() == item.subCatCode) {
-                cat1.add(item.nameKor + "|" + item.point);
+                arr3.push(item.nameKor + "|" + item.point);
             }
         });
         
-        var last_ele = $(sub_ele).next().next();
+        var cat3 = new Set(arr3.sort());
+        var last_ele = $(sub_ele).nextAll("select").first();
         $(last_ele).empty();
-        cat1.forEach(function(value) {
+        cat3.forEach(function(value) {
             $(last_ele).append($('<option>', { 
                 value: value.replace(/^.+\|/g, ""),
                 text : value.replace(/\|.+$/g, "") 
             }));
         });
-
+        
         skillPoint();
     }
 
     function skillPoint() {
         $("select[name='uma-skill-cat1']").each(function(index, ele) {
-            var cat2val = $(ele).next().val();
-            var origin_pt = parseFloat($(ele).parent().find("select").last().val());
+            var cat2val = $(ele).nextAll("select").first().val();
+            var origin_pt = parseFloat($(ele).nextAll("select").last().val());
             
             var pt = origin_pt;
             if (cat2val != "common") {
