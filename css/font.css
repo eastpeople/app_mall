@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'GyeonggiBatang';
+    font-weight: 400;
+    font-style: normal;
+    src: url('../font/Title_Light.otf') format('opentype'),
+        url('../font/Title_Medium.otf') format('opentype'),
+        url('../font/woff/Batang_Bold.woff') format('woff'),
+        url('../font/woff/Batang_Regular.woff') format('woff'),
+        url('../font/woff/Title_Bold.woff') format('woff'),
+        url('../font/woff/Title_Light.woff') format('woff'),
+        url('../font/woff/Title_Medium.woff') format('woff'),
+        url('../font/woff/TitleV.woff') format('woff');
+    font-display: swap;
+}
