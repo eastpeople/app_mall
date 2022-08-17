@@ -28,6 +28,8 @@ hr {
 
 h2 {
   margin: 0;
+  color: #fff;
+  font-weight: 400;
   white-space: nowrap;
 }
 
@@ -42,6 +44,7 @@ h4 > img {
 }
 
 input[type=text],
+input[type=password],
 input[type=number],
 textarea {
   width: 100%;

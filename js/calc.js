@@ -1,6 +1,23 @@
 var skillcat1 = [], skillcat2 = [], skillcat3 = [];
 $(function() {
     
+    $("#btnGo").click(function() {
+        cpassword();
+    });
+
+    $("#password").keyup(function(e){ 
+        if (e.keyCode == 13) {
+            cpassword();
+        }
+    });
+
+    function cpassword() {
+        if (CryptoJS.SHA256($("#password").val()).toString() === "eaf493e8af54e4fb893988a51b83b390a725e24bbe1575a50625c811c08ecb6f") {
+            $("#page1").hide();
+            $("#page2").show();   
+        }
+    }
+
     $("input[name^='uma-stat']").change(function() {
         $(this).next().text(statPoint(parseInt($(this).val())));
         totalPoint();
@@ -208,6 +225,10 @@ $(function() {
         var cat3 = new Set(arr3.sort());
         var last_ele = $(sub_ele).nextAll("select").first();
         $(last_ele).empty();
+        $(last_ele).append($('<option>', { 
+            value: "0",
+            text : "선택" 
+        }));
         cat3.forEach(function(value) {
             $(last_ele).append($('<option>', { 
                 value: value.replace(/^.+\|/g, ""),
@@ -253,10 +274,10 @@ $(function() {
 
     function totalPoint() {
         var tp = 0;
-        $("#page1").find("strong").each(function(index, ele) {
+        $("#page2").find("strong").each(function(index, ele) {
             tp += parseInt($(ele).text());
         });
-        $("#rank").find("strong").text(rank(tp)[0]);
+        $("#rank").find("img").attr("src", "img/rank/_" + rank(tp)[0].toLowerCase() + ".png");
         $("#rank").find("span").text(tp);
     }
 
