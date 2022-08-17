@@ -1,6 +1,14 @@
 var skillcat1 = [], skillcat2 = [], skillcat3 = [];
 $(function() {
-    
+
+    $("input[name='uma-ura-yn']").change(function () {
+        if (this.checked) {
+            $("#div-ura").slideDown();
+        } else {
+            $("#div-ura").slideUp();
+        }
+    });
+
     $("#btnGo").click(function() {
         cpassword();
     });
@@ -20,8 +28,28 @@ $(function() {
     }
 
     $("input[name^='uma-stat']").change(function() {
-        $(this).next().text(statPoint(parseInt($(this).val())));
+        var ura = 0;
+        if ($("input[name='uma-ura-yn']").is(':checked')) {
+            ura = parseInt($("#div-ura").find("b").first().text());
+        }
+        $(this).next().text(statPoint(parseInt($(this).val()) + ura));
         totalPoint();
+    });
+
+    $("select[name='uma-ura-race-pt']").change(function() {
+        $("input[name^='uma-ura-race']").val($(this).val());
+    });
+
+    $("input[name^='uma-ura'], select[name^='uma-ura']").change(function() {
+        var tp = 0;
+        $("#div-ura").find("input[type='checkbox'], input[type='radio']").each(function(index, ele) {
+            if (ele.checked && $(ele).attr("name") != 'uma-ura-race') {
+                console.log($(ele).val());
+                tp += parseInt($(ele).val());
+            }
+        });
+        $("#div-ura").find("b").first().text(tp);
+        $("input[name^='uma-stat']").trigger('change');
     });
 
     function statPoint(value1) {
