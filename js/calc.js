@@ -277,7 +277,7 @@ $(function() {
         $("#page2").find("strong").each(function(index, ele) {
             tp += parseInt($(ele).text());
         });
-        $("#rank").find("img").attr("src", "img/rank/_" + rank(tp)[0].toLowerCase() + ".png");
+        $("#rank").find("img").attr("src", "img/rank/r_" + rank(tp)[0].toLowerCase() + ".png");
         $("#rank").find("span").text(tp);
     }
 
