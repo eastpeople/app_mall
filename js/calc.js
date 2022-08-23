@@ -231,7 +231,7 @@ $(function() {
     }
 
     $("#running-style select, #race select, #track select").change(function() {
-        
+        totalPoint();
     });
 
     $("select[name='uma-skill-cat1']").change(function() {
