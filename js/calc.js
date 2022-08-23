@@ -1,4 +1,4 @@
-var skillcat1 = [], skillcat2 = [], skillcat3 = [];
+var lstSkill;
 $(function() {
 
     $("input[name='uma-ura-yn']").change(function () {
@@ -38,19 +38,24 @@ $(function() {
 
     $("select[name='uma-ura-race-pt']").change(function() {
         $("input[name^='uma-ura-race']").val($(this).val());
+        uraPoint();
     });
 
     $("input[name^='uma-ura'], select[name^='uma-ura']").change(function() {
+        uraPoint();
+    });
+
+    function uraPoint() {
         var tp = 0;
         $("#div-ura").find("input[type='checkbox'], input[type='radio']").each(function(index, ele) {
             if (ele.checked && $(ele).attr("name") != 'uma-ura-race') {
-                console.log($(ele).val());
+                
                 tp += parseInt($(ele).val());
             }
         });
         $("#div-ura").find("b").first().text(tp);
         $("input[name^='uma-stat']").trigger('change');
-    });
+    }
 
     function statPoint(value1) {
         var pt = 0, c = [];
@@ -176,132 +181,158 @@ $(function() {
         .then(response => response.json())
         .then(data => {
             lstSkill = JSON.parse(JSON.stringify(data));
-            //category1();
+            category1();
         })
         .catch(error => console.log(error));
 
     
     function category1() {
-        var cat1 = new Set();
+        var arr1 = new Array();
         lstSkill.forEach(function (item, index) {
-            cat1.add(item.mainCatKor + "|" + item.mainCatCode);
+            arr1.push(item.mainCatKor + "|" + item.mainCatCode);
         });
         
-        $("#div-skills").append('<div class="p100"> <select name="uma-skill-cat1"></select>  <select name="uma-skill-cat2"></select><br> <select name="uma-skill-list" ></select> <strong></strong><small>pt</small> <button name="delSkill">삭제</button></div>');
-        var last_ele = $("#div-skills").find("select[name='uma-skill-cat1']").last();
-        $(last_ele).empty();
+        var cat1 = new Set(arr1.sort());
+        //$("#div-skills").append('<div class="p100"> <select name="uma-skill-cat1"></select>  <select name="uma-skill-cat2"></select><br> <select name="uma-skill-list" ></select> <strong></strong><small>pt</small> <button name="delSkill">삭제</button></div>');
+        var cat1_ele = $("select[name='uma-skill-cat1']");
+        $(cat1_ele).empty();
         cat1.forEach(function(value) {
-            $(last_ele).append($('<option>', { 
+            $(cat1_ele).append($('<option>', { 
                 value: value.replace(/^.+\|/g, ""),
                 text : value.replace(/\|.+$/g, "") 
             }));
         });
 
-        category2(last_ele);
+        category2($(cat1_ele).val());
     }
     
-    function category2(ele) {
+    function category2(main_ele_val) {
+        
         var cat1 = new Set();
-        var catva = $(ele).val();
         
         lstSkill.forEach(function (item, index) {
-            if (catva == item.mainCatCode) {
+            if (main_ele_val == item.mainCatCode) {
                 cat1.add(item.subCatKor + "|" + item.subCatCode);
             }
         });
-        var next_ele = $(ele).nextAll("select").first();
-        $(next_ele).empty();
+        var cat2_ele = $("select[name='uma-skill-cat2']");
+        $(cat2_ele).empty();
+        $(cat2_ele).append($('<option>', { 
+            value: "all",
+            text : "전체" 
+        }));
         cat1.forEach(function(value) {
-            $(next_ele).append($('<option>', { 
+            $(cat2_ele).append($('<option>', { 
                 value: value.replace(/^.+\|/g, ""),
                 text : value.replace(/\|.+$/g, "") 
             }));
         });
-        skills(ele, next_ele);
-
-        $("select[name='uma-skill-cat1']").change(function() {
-            category2(this);
-        });
-
-        $("select[name='uma-skill-cat2']").change(function() {
-            skills($(this).prev(), this);
-        });
-
-        $("select[name='uma-skill-list']").change(function() {
-            skillPoint();
-        });
-
-        $("button[name='delSkill']").click(function() {
-            $(this).parent().remove();
-            totalPoint();
-        });
+        skills(main_ele_val, $(cat2_ele).val());
     }
 
     $("#running-style select, #race select, #track select").change(function() {
-        skillPoint();
+        
+    });
+
+    $("select[name='uma-skill-cat1']").change(function() {
+        category2($(this).val());
+    });
+
+    $("select[name='uma-skill-cat2']").change(function() {
+        skills($("select[name='uma-skill-cat1']").val(), $(this).val());
     });
 
     
     
-    function skills(main_ele, sub_ele) {
+    function skills(main_ele_val, sub_ele_val) {
         var arr3 = new Array();
         lstSkill.forEach(function (item, index) {
-            if ($(main_ele).val() == item.mainCatCode && $(sub_ele).val() == item.subCatCode) {
-                arr3.push(item.nameKor + "|" + item.point);
+            if (main_ele_val == item.mainCatCode && (sub_ele_val == 'all' || sub_ele_val == item.subCatCode)) {
+                arr3.push(item.nameKor + "|" + item.id);
             }
         });
         
         var cat3 = new Set(arr3.sort());
-        var last_ele = $(sub_ele).nextAll("select").first();
-        $(last_ele).empty();
-        $(last_ele).append($('<option>', { 
+        var lst_ele = $("select[name='uma-skill-list']");
+        $(lst_ele).empty();
+        $(lst_ele).append($('<option>', { 
             value: "0",
             text : "선택" 
         }));
         cat3.forEach(function(value) {
-            $(last_ele).append($('<option>', { 
+            $(lst_ele).append($('<option>', { 
                 value: value.replace(/^.+\|/g, ""),
                 text : value.replace(/\|.+$/g, "") 
             }));
         });
         
-        skillPoint();
+        //skillPoint();
     }
 
-    function skillPoint() {
-        $("select[name='uma-skill-cat1']").each(function(index, ele) {
-            var cat2val = $(ele).nextAll("select").first().val();
-            var origin_pt = parseFloat($(ele).nextAll("select").last().val());
-            
-            var pt = origin_pt;
-            if (cat2val != "common") {
-                var per = parseFloat($("#uma-" + cat2val).val());
-                pt = Math.round(origin_pt * per / 100);
-            }
-            $(ele).nextAll("strong").first().text(pt);
+    function skillPoint(skill_id) {
+        
+        if ($("span[uma-skill-id='" + skill_id + "']").length > 0) {
+            return;
+        } else if (skill_id == '0') {
+            return;
+        }
 
+        var skillname = "";
+        lstSkill.forEach(function (item, index) {
+            if (skill_id == item.id) {
+                skillname = item.nameKor;
+            }
         });
 
-        // var cat2 = $("select[name='uma-skill-cat1']");
-        // var cat2val = $(cat2).val();
-        
-        // var pt = origin_pt;
-        // if (cat2val != "common") {
-        //     var per = parseFloat($("#uma-" + cat2val).val());
-        //     console.log(per);
-        //     pt = Math.round(origin_pt * per / 100);
-        // }
-        // $("select[name='uma-skill-list']").next().text(pt);
-
+        $("#div-skills").append('<div>'
+                                + '<span uma-skill-id="' + skill_id + '">' + skillname + '</span> '
+                                + '<strong></strong> <small>pt</small> '
+                                + '<button name="delSkill">제거</button>'
+                                + '</div>');
         totalPoint();
+    
+        $("button[name='delSkill']").click(function() {
+            $(this).parent().remove();
+            totalPoint();
+        });
         
     }
+
+    $("button[name='addSkill']").on("click", function() {
+        skillPoint($("select[name='uma-skill-list']").val());
+        
+    });
+
+    $("button[name='addFavoriteSkill']").on("click", function() {
+        skillPoint($("select[name='favoriteSkills']").val());
+    });
 
     function rank(pt) {
         return pt < 300 ? ["G", "#676567"] : pt < 600 && pt >= 300 ? ["G+", "#676567"] : pt < 900 && pt >= 600 ? ["F", "#ada4ed"] : pt < 1300 && pt >= 900 ? ["F+", "#ada4ed"] : pt < 1800 && pt >= 1300 ? ["E", "#e18dfb"] : pt < 2300 && pt >= 1800 ? ["E+", "#e18dfb"] : pt < 2900 && pt >= 2300 ? ["D", "#6bc3ff"] : pt < 3500 && pt >= 2900 ? ["D+", "#6bc3ff"] : pt < 4900 && pt >= 3500 ? ["C", "#84db6b"] : pt < 6500 && pt >= 4900 ? ["C+", "#84db6b"] : pt < 8200 && pt >= 6500 ? ["B", "#f086a9"] : pt < 1e4 && pt >= 8200 ? ["B+", "#f086a9"] : pt < 12100 && pt >= 1e4 ? ["A", "#ffa35f"] : pt < 14500 && pt >= 12100 ? ["A+", "#ffa35f"] : pt < 15900 && pt >= 14500 ? ["S", "#eccf6c"] : pt < 17500 && pt >= 15900 ? ["S+", "#eccf6c"] : pt < 19200 && pt >= 17500 ? ["SS", "#eccf6c"] : pt < 19600 && pt >= 19200 ? ["SS+", "#eccf6c"] : pt < 2e4 && pt >= 19600 ? ["UG", "#eccf6c"] : pt < 20400 && pt >= 2e4 ? ["UG1", "#eccf6c"] : pt < 20800 && pt >= 20400 ? ["UG2", "#eccf6c"] : pt < 21200 && pt >= 20800 ? ["UG3", "#eccf6c"] : pt < 21600 && pt >= 21200 ? ["UG4", "#eccf6c"] : pt < 22100 && pt >= 21600 ? ["UG5", "#eccf6c"] : pt < 22500 && pt >= 22100 ? ["UG6", "#eccf6c"] : pt < 23e3 && pt >= 22500 ? ["UG7", "#eccf6c"] : pt < 23400 && pt >= 23e3 ? ["UG8", "#eccf6c"] : pt < 23900 && pt >= 23400 ? ["UG9", "#eccf6c"] : pt >= 23900 ? ["UF", "#eccf6c"] : ["", ""];
     }
 
     function totalPoint() {
+
+        $("span[uma-skill-id]").each(function(index, ele) {
+            var skillid = $(this).attr("uma-skill-id");
+            var _this = $(this);
+            
+            lstSkill.forEach(function (item, index) {
+                if (skillid == item.id) {
+                    var subcode = item.subCatCode;
+                    var origin_pt = parseFloat(item.point);
+                    var pt = origin_pt;
+                    
+                    if (!",common,all".includes(subcode)) {
+                        var per = parseFloat($("#uma-" + subcode).val());
+                        pt = Math.round(origin_pt * per / 100);
+                    }
+                    
+                    $(_this).next().text(pt);
+                }
+            });
+        });
+
         var tp = 0;
         $("#page2").find("strong").each(function(index, ele) {
             tp += parseInt($(ele).text());
@@ -309,9 +340,5 @@ $(function() {
         $("#rank").find("img").attr("src", "img/rank/r_" + rank(tp)[0].toLowerCase() + ".png");
         $("#rank").find("span").text(tp);
     }
-
-    $("#addSkill").on("click", function() {
-        category1();
-    });
     
 });

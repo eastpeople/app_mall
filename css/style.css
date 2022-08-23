@@ -16,8 +16,7 @@ button, html [type="button"] {
 }
 
 hr {
-  border: none;
-  height: 0.5px;
+  border: 0.5px solid #aaa;
   /* Set the hr color */
   color: #333;
   /* old IE */
@@ -35,7 +34,7 @@ h2 {
 
 h4 {
   margin: 15px 5px 10px 0;
-  border-bottom: 1px solid #aaa;
+  /* border-bottom: 1px solid #aaa; */
 }
 
 h4 > img {
@@ -88,7 +87,6 @@ input[type=submit],
 input[type=button] {
   background-color: #fbfbfb;
   color: black;
-  margin-top: 10px;
   padding: 5px 10px;
   border: 1px solid #dfd4ce;
   border-radius: 4px;
@@ -164,6 +162,10 @@ input[type=button]:hover {
     margin: 5px 2px;
 }
 
+.row {
+  width: calc(100% - 4px);
+  /* border-top: 1px solid #aaa; */
+}
 /* Clear floats after the columns */
 .row:after {
   content: "";
