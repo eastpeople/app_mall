@@ -191,38 +191,49 @@
 				<div class="col-100">
 					<div>
 						<span>스피드</span>
-						<input type="number" pattern="\d*" name="uma-stat-speed" maxlength="4"
+						<input type="number" name="uma-stat-speed-1" min="0" max="1200" value="0"
 							style="width: 48px;" required="" data-parsley-range="[10, 1200]">
+						<input type="number" name="uma-stat-speed-2" maxlength="3" style="width: 40px;" value="0">
+						<button name="stat-plus">+</button> <button name="stat-minus">-</button>
 						<strong>0</strong><small>pt</small>
 					</div>
 					<div>
 						<span>스태미나</span>
-						<input type="number" pattern="\d*" name="uma-stat-stamina" maxlength="4"
+						<input type="number" name="uma-stat-stamina-1" min="0" max="1200" value="0"
 							style="width: 48px;" required="" data-parsley-range="[10, 1200]">
+							<input type="number" name="uma-stat-stamina-2" maxlength="3" style="width: 40px;" value="0">
+							<button name="stat-plus">+</button> <button name="stat-minus">-</button>
 						<strong>0</strong><small>pt</small>
 					</div>
 					<div>
 						<span>파워</span>
-						<input type="number" pattern="\d*" name="uma-stat-power" maxlength="4"
+						<input type="number" name="uma-stat-power-1" min="0" max="1200" value="0"
 							style="width: 48px;" required="" data-parsley-range="[10, 1200]">
+						<input type="number" name="uma-stat-power-2" maxlength="3" style="width: 40px;" value="0">
+						<button name="stat-plus">+</button> <button name="stat-minus">-</button>
 						<strong>0</strong><small>pt</small>
 					</div>
 					<div>
 						<span>근성</span>
-						<input type="number" pattern="\d*" name="uma-stat-toughness" maxlength="4"
+						<input type="number" name="uma-stat-toughness-1" min="0" max="1200" value="0"
 							style="width: 48px;" required="" data-parsley-range="[10, 1200]">
+						<input type="number" name="uma-stat-toughness-2" maxlength="3" style="width: 40px;" value="0">
+						<button name="stat-plus">+</button> <button name="stat-minus">-</button>
 						<strong>0</strong><small>pt</small>
 					</div>
 					<div>
 						<span>지능</span>
-						<input type="number" pattern="\d*" name="uma-stat-intellect" maxlength="4"
+						<input type="number" name="uma-stat-intellect-1" min="0" max="1200" value="0"
 							style="width: 48px;" required="" data-parsley-range="[10, 1200]">
+						<input type="number" name="uma-stat-intellect-2" maxlength="3" style="width: 40px;" value="0">
+						<button name="stat-plus">+</button> <button name="stat-minus">-</button>
 						<strong>0</strong><small>pt</small>
 					</div>
 				</div>
 				<div class="col-100">
-					<h4><label style="width: 96px; background-color: #6bc50d; color: white; padding-left: 5px; padding-right: 5px; border-radius: 4px;">
-						URA 보정 <input type="checkbox" name="uma-ura-yn" >
+					<h4><label style="width: 96px; ">
+						<input type="checkbox" name="uma-ura-yn" style="top: -7px;" >
+						<img src="img/ura_finals.png">
 					</label></h4>
 				</div>
 				<div id="div-ura" class="col-100 hide">

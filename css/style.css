@@ -92,7 +92,8 @@ input[type=submit],
 input[type=button] {
   background-color: #fbfbfb;
   color: black;
-  padding: 5px 10px;
+  padding: 3px 6px;
+  margin-top: 1px;
   border: 1px solid #dfd4ce;
   border-radius: 4px;
   font-size: 1.1em;

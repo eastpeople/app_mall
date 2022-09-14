@@ -1,6 +1,24 @@
 var lstSkill;
 $(function() {
 
+    $("input[type='number']").on('focus', function () {
+        this.select();
+    });
+
+    $("button[name='stat-plus']").on('click ', function () {
+        var _ele = $(this).prevAll('input').first();
+        var _temp = $(_ele).val();
+        if (!isNaN(_temp)) $(_ele).val(parseInt(_temp) + 1);
+        statPrevious();
+    });
+
+    $("button[name='stat-minus']").on('click ', function () {
+        var _ele = $(this).prevAll('input').first();
+        var _temp = $(_ele).val();
+        if (!isNaN(_temp) && _temp > 0) $(_ele).val(parseInt(_temp) - 1);
+        statPrevious();
+    });
+
     $("input[name='uma-ura-yn']").change(function () {
         if (this.checked) {
             $("#div-ura").slideDown();
@@ -28,12 +46,7 @@ $(function() {
     }
 
     $("input[name^='uma-stat']").change(function() {
-        var ura = 0;
-        if ($("input[name='uma-ura-yn']").is(':checked')) {
-            ura = parseInt($("#div-ura").find("b").first().text());
-        }
-        $(this).next().text(statPoint(parseInt($(this).val()) + ura));
-        totalPoint();
+        statPrevious();
     });
 
     $("select[name='uma-ura-race-pt']").change(function() {
@@ -55,6 +68,30 @@ $(function() {
         });
         $("#div-ura").find("b").first().text(tp);
         $("input[name^='uma-stat']").trigger('change');
+    }
+
+    function statPrevious() {
+        var ura = 0, _temp;
+        if ($("input[name='uma-ura-yn']").is(':checked')) {
+            _temp = parseInt($("#div-ura").find("b").first().text());
+            if (!isNaN(_temp)) ura += _temp;
+        }
+
+        $("input[name^='uma-stat'][name$='-1']").each(function (index, ele) {
+            var _tt = 0;
+            var _name = $(ele).attr('name');
+            var _ele = $("input[name^='" + _name.replace(/-[0-9]+/g, "") + "']");
+            
+            _ele.each(function (index2, ele2) {
+                _temp = parseInt($(ele2).val());
+                if (!isNaN(_temp)) _tt += _temp;
+            });
+
+            $(_ele).nextAll('strong').first().text(statPoint(ura + _tt));
+        });
+
+
+        totalPoint();
     }
 
     function statPoint(value1) {
