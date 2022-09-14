@@ -53,6 +53,11 @@ textarea {
   resize: vertical;
 }
 
+input[type=checkbox] {
+  position: relative;
+  top: 2px;
+}
+
 select {
   padding: 5px;
   border: 1px solid #dfd4ce;
