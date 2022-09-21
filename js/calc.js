@@ -1,9 +1,9 @@
 var lstSkill;
 $(function() {
 
-    $("input[type='number']").on('focus', function () {
+    /*$("input[type='number']").on('focus', function () {
         this.select();
-    });
+    });*/
 
     $("button[name='stat-plus']").on('click ', function () {
         var _ele = $(this).prevAll('input').first();

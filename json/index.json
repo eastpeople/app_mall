@@ -1,0 +1,38 @@
+{
+    "draw": 1,
+    "pageNumber": 0,
+    "recordsTotal": 2,
+    "recordsFiltered": 2,
+    "data" : [
+        {
+            "barcode": "SE2548112",
+            "accession": "220902-0001",
+            "patientName": "James Cameron",
+            "dob": "03/01/1945",
+            "sampleType": "Saliva",
+            "provider": "Mega Healthcare",
+            "collectionDate": "09/01/2022",
+            "receivedDate": "09/02/2022 09:48",
+            "reportedDate": "09/02/2022 15:05",
+            "result": "negative",
+            "status": "Reported",
+            "note": "",
+            "others": ""
+        },
+        {
+            "barcode": "RFG100000001",
+            "accession": "220902-0002",
+            "patientName": "Emma Watwsson",
+            "dob": "01/25/2020",
+            "sampleType": "Saliva",
+            "provider": "Sony Medical Center",
+            "collectionDate": "09/01/2022",
+            "receivedDate": "09/02/2022 09:48",
+            "reportedDate": "09/02/2022 15:05",
+            "result": "positive",
+            "status": "Reported",
+            "note": "",
+            "others": ""
+        }
+    ]
+}

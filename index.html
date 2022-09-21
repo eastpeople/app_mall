@@ -1,48 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
-    <script src="js/upload.js"></script>​
-	<!-- <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/super-build/ckeditor.js"></script>
-    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" /> -->
-    <style>
-        #container {
-            width: 1000px;
-            margin: 20px auto;
-        }
-        .ck-editor__editable[role="textbox"] {
-            /* editing area */
-            min-height: 200px;
-        }
-        .ck-content .image {
-            /* block images */
-            max-width: 80%;
-            margin: 20px auto;
-        }
-    </style>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="js/usertable.js"></script>
+	<link href="css/style2.css" rel="stylesheet">
+	<link href="css/font.css" rel="stylesheet">
+	<link href="css/table.css" rel="stylesheet">
+	<link href="fontawesome/font-awesome.css" rel="stylesheet">
+    
+    <script src="select2/select2.full.min.js"></script>
+	<link href="select2/css/select2.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <div id="editor"></div>
+    <header>
+        <div class="text-center">
+            <a class="btn" href="#">Orders</a>
+            <a class="btn" href="#">Accessioning</a>
+            <a class="btn" href="#">Reporting</a>
+            <a class="btn" href="#">Quality Control</a>
+            <a class="btn" href="#">Submit to States</a>
+        </div>
+
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-20">
+                In All Fields
+                <input type="text">
+            </div>
+            <div class="col-20">
+                Patient Name
+                <input type="text">
+            </div>
+            <div class="col-20">
+                Order Barcodes
+                <input type="text">
+            </div>
+            <div class="col-20">
+                Provider Name
+                <input type="text">
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-20">
+                <label>Filter by Collection Date</label>
+                <div class="date-container">
+                    <input type="text" class="datepicker"> <i class="fa fa-calendar"></i>
+                </div>
+            </div>
+            <div class="col-20">
+                <label>Filter by Received Date</label>
+                <div class="date-container">
+                    <input type="text" class="datepicker"> <i class="fa fa-calendar"></i>
+                </div>
+            </div>
+            <div class="col-20">
+                <label>Filter by Reported Date</label>
+                <div class="date-container">
+                    <input type="text" class="datepicker"> <i class="fa fa-calendar"></i>
+                </div>
+            </div>
+            <div class="col-20">
+                <label>Filter by Result</label>
+                <input type="text">
+            </div>
+
+        </div>
+
+        <div class="usertable" id="_input_grid"></div>
+    </div>
+    
+    <footer>
+
+    </footer>
 </body>
 <script>
-    function MyCustomUploadAdapterPlugin(editor) {
-        editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-            return new UploadAdapter(loader)
-        }
-    }
-    ClassicEditor
-        .create(
-            document.querySelector('#editor'), {
-                extraPlugins: [MyCustomUploadAdapterPlugin]
-            }
-        )
-        .catch(error => {
-            console.error(error);
+    
+    // #. 시작
+    $(function() {
+        $(function () {
+            $(".datepicker").datepicker();
         });
+        
+        var columns = [{
+            title: '',
+            width: '15px',
+            bodyClassName: 'text-center',
+            data: "",
+            edittype: 'hcheck'
+        }, {
+            title: 'BARCODE',
+            data: "barcode",
+            width: '100px'
+            /*edittype: 'combo',
+            editoptions: { "GENOTYPING": "Genotyping", "METHYLATION": "Methylation" },*/
+        }, {
+            title: 'ACCESSION',
+            data: "accession",
+            width: '130px',
+            edittype: 'text',
+            parsley: true,
+            alwaysedit: true
+        }, {
+            title: 'PATIENT NAME',
+            data: "patientName"
+        }, {
+            headClassName: 'width-40',
+            title: 'DOB',
+            data: "dob"
+        }, {
+            title: 'SAMPLE TYPE',
+            data: "sampleType"
+        }, {
+            title: 'PROVIDER',
+            data: "provider"
+        }, {
+            headClassName: 'width-40',
+            title: 'COLLECTION DATE',
+            data: "collectionDate"
+        }, {
+            title: 'RECECIVED DATE',
+            data: "receivedDate"
+        }, {
+            title: 'REPORTED DATE',
+            data: "reportedDate"
+        }, {
+            title: 'RESULT',
+            data: "result"
+        }, {
+            title: 'STATUS',
+            data: "status"
+        }];
+        
+        UserTable.init('_input_grid', true, [20, 50], [20, 50], {
+            isSaveButton: false,
+            isExcelDownloadButton: false,
+            isExcelFormButton: true,
+            isAddButton: false,
+            isDeleteButton: false
+        }, columns);
+        
+        UserTable.draw('_input_grid', {
+            url : "./json/index.json",
+            type : "GET",
+            dataType : "json"
+		}, {
+            url: "/input/spl/save",
+            type: "POST",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(header, token);
+            }
+        }, null);
+        
+
+        
+        //UserTable.addEmptyRows('_input_grid', 3);
+    });
 </script>
+
 </html>

@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css?family=Karla');
+/*google fonts*/
+
+* {
+  box-sizing: border-box;
+  font-family: 'Karla';
+}
+
+body {
+  margin: 0; 
+  padding: 0;
+}
+
+button, html [type="button"] {
+  -webkit-appearance: none;   
+}
+
+hr {
+  border: 0.5px solid #aaa;
+  /* Set the hr color */
+  color: #333;
+  /* old IE */
+  background-color: #333;
+  /* Modern Browsers */
+  margin: 15px 0;
+}
+
+h2 {
+  margin: 0;
+  color: #fff;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+h4 {
+  margin: 15px 5px 10px 0;
+  /* border-bottom: 1px solid #aaa; */
+}
+
+h4 > img {
+  width: 20px;
+  margin-right: 5px;
+}
+
+input[type=text],
+input[type=password],
+input[type=number],
+textarea {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+input[type=checkbox] {
+  position: relative;
+  top: 2px;
+}
+
+select {
+  padding: 5px;
+  border: 1px solid #dfd4ce;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+p {
+  font-size: 0.9em;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  text-align: right;
+}
+
+label {
+  padding: 5px 0;
+  display: block;
+}
+
+button,
+input[type=submit],
+input[type=button] {
+  background-color: #fbfbfb;
+  color: black;
+  padding: 3px 6px;
+  margin-top: 1px;
+  border: 1px solid #dfd4ce;
+  border-radius: 4px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+button:hover,
+input[type=submit]:hover,
+input[type=button]:hover {
+  background-color: #ffffff;
+}
+
+.container {
+  padding: 10px;
+}
+
+.col-20 {
+  float: left;
+  width: 20%;
+  margin-top: 6px;
+  margin-right: 10px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  font-size: 0.9em;
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+.col-100 {
+  font-size: 1em;
+  float: left;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.col-100 > div {
+  float: left;
+  padding: 4px;
+  margin-right: 5px;
+  margin-bottom: 4px;
+  background-color: #fff;
+  border-radius: 6px;
+  border: 1px solid #dfd4ce;
+  /*border-right: 0.5px solid rgb(218, 222, 230);*/
+}
+
+.col-100 > div.p100 {
+  width: calc(100% - 4px);
+}
+
+.col-100 > div > span {
+  font-size: 0.83em;
+  display: inline-block;
+  min-width: 55px;
+}
+
+.col-100 strong {
+  display: inline-block;
+  font-size: 0.95em;
+  padding-right: 1px;
+  min-width: 32px;
+  text-align: right;
+  letter-spacing: -1px;
+}
+
+.col-75 > b {
+    font-size: 0.95em;
+    display: block;
+    margin: 5px 2px;
+}
+
+.row {
+  width: calc(100% - 4px);
+  margin-bottom: 5px;
+  /* border-top: 1px solid #aaa; */
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.fleft {
+  float: left;
+}
+
+.fright {
+  float: right;
+}
+
+.hide {
+  display: none;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+
+  .col-25,
+  .col-75,
+  input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.date-container {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.datepicker {
+  width: calc(100% - 20px) !important;
+  border: none !important;
+  padding: 2px !important;
+}
+
+header {
+  margin: 0;
+  padding: 0;
+  display: block;
+  padding: 10px 5px 20px 5px;
+  /*background-image: url('../img/uma-footer.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;*/
+}
+
+footer {
+  margin: 0;
+  padding: 0;
+  display: block;
+  /*
+  width: calc(100vw - 10px);
+  width: calc(100vw - 10px);
+  height: calc(100vw / 4);
+  background-image: url('../img/uma-footer.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;*/
+}
