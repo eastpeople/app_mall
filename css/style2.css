@@ -51,6 +51,7 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
+  font-size: 1em;
 }
 
 input[type=checkbox] {
@@ -63,6 +64,7 @@ select {
   border: 1px solid #dfd4ce;
   border-radius: 4px;
   resize: vertical;
+  font-size: 1em;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -107,7 +109,14 @@ input[type=button]:hover {
 }
 
 .container {
-  padding: 10px;
+  padding: 0 20px;
+}
+
+.col-15 {
+  float: left;
+  width: 15%;
+  margin-top: 6px;
+  margin-right: 10px;
 }
 
 .col-20 {
@@ -209,11 +218,17 @@ input[type=button]:hover {
 }
 
 .date-container {
-  width: 100%;
+  width: 130px;
   padding: 4px;
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
+  display: inline-block;
+}
+
+.date-container button {
+  font-size: 0.7em;
+  margin-top: 5px;
 }
 
 .datepicker {

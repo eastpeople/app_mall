@@ -18,6 +18,14 @@ th {
     background: none;
 }
 
+.table-bordered {
+    border-top: 1px solid #dee2e6;
+}
+
+.table-bordered td, .table-bordered th {
+    border-bottom: 1px solid #dee2e6;
+}
+
 .table thead th,
 .table>thead>tr>th {
     color: #000;
@@ -179,7 +187,7 @@ th {
     color: #282828;
 }
 
-.table>caption+thead>tr:first-child>td,
+/* .table>caption+thead>tr:first-child>td,
 .table>caption+thead>tr:first-child>th,
 .table>colgroup+thead>tr:first-child>td,
 .table>colgroup+thead>tr:first-child>th,
@@ -191,7 +199,7 @@ th {
 .table.table-bordered>thead:first-child>tr:first-child>td,
 .table.table-bordered>thead:first-child>tr:first-child>th {
     border-top: 1px solid #e0e0e0;
-}
+} */
 
 .table .with-form-control .form-control,
 .table .with-input-group .input-group {
@@ -269,6 +277,14 @@ a:visited {
     font-size: 1.1em;
 }
 
+.btn.big {
+    padding: 10px 12px;
+}
+
+.btn i {
+    font-size: 0.7em;
+}
+
 .pull-right {
     float: right !important;
 }
@@ -276,7 +292,7 @@ a:visited {
 .dataTables_length,
 div.dataTables_info {
     float: left;
-    margin-right: 15px;
+    margin: 3px 15px 0 3px;
 }
 
 .usertable {

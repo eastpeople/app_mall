@@ -15,6 +15,7 @@ var UserTable = function() {
 			columns[uid] = pColumns;
 			var h = '<div class="dataTables_wrapper form-inline dt-bootstrap no-footer" style="height: 100%;">';
 			h += '<div class="dataTables_length m-b-10" id="' + uid + '_length">';
+			h += '  <div id="' + uid + '_paginate" class="m-t-10"></div>';
 		
 			excelForm = {};
 			excelForms[uid] = [];
@@ -86,38 +87,41 @@ var UserTable = function() {
 			excelForms[uid].push(excelForm);
 			
 			
+			
+			
+			h += '</div>';
+			h += '<div class="pagination pull-right">';
 			if (pageable) {
-				h += '<label>Max <select id="' + uid + '_page" aria-controls="' + uid + '_ctrl" class="form-control input-sm">';
+				h += '<select id="' + uid + '_page" aria-controls="' + uid + '_ctrl" class="form-control input-sm">';
 				
 				if (!pagesView) pagesVal = [ 10, 50 ], pagesView = [ 10, 50 ];
 				for (var p in pagesView) {
 					h += '<option value="' + pagesVal[p] + '">' + pagesView[p] + '</option>';
 				}
-				h += '</select> samples</label>';
+				h += '</select>'
+				h += '&nbsp;';
+				h += '<div class="dataTables_info pull-right" id="' + uid + '_polite" role="status" aria-live="polite"></div>';
 				h += '<input type="hidden" id="' + uid + '_page_start" value="0"/>';
 			}
-			
-			h += '</div>';
-			h += '<div class="dt-buttons btn-group pull-right">';
 			h += '<div id="' + uid + '_table_error" class="hide"></div> ';
-			if (options.isAddButton) {
-				h += '<button id="' + uid + '_add_btn" class="btn btn-save">Add</button> ';
-			}
-			if (options.isDeleteButton) {
-				h += '<button id="' + uid + '_del_btn" class="btn btn-save">Delete</button> ';
-			}
-			if (options.isSaveButton) {
-				h += '<button id="' + uid + '_save_btn" class="btn btn-save">Save</button> ';
-			}
-			if (options.isSelectedExcelDownloadButton) {
-				h += '<button id="' + uid + '_selected_excel_btn" class="btn btn-green">Selected Excel Download</button>';
-			}
-			if (options.isExcelDownloadButton) {
-				h += '<button id="' + uid + '_excel_btn" class="btn btn-green">Excel Download</button>';
-			}
-			if (options.isExcelFormButton) {
-				h += '<button id="' + uid + '_excelform_btn" class="btn btn-green">Excel Form</button>';
-			}
+			// if (options.isAddButton) {
+			// 	h += '<button id="' + uid + '_add_btn" class="btn btn-save">Add</button> ';
+			// }
+			// if (options.isDeleteButton) {
+			// 	h += '<button id="' + uid + '_del_btn" class="btn btn-save">Delete</button> ';
+			// }
+			// if (options.isSaveButton) {
+			// 	h += '<button id="' + uid + '_save_btn" class="btn btn-save">Save</button> ';
+			// }
+			// if (options.isSelectedExcelDownloadButton) {
+			// 	h += '<button id="' + uid + '_selected_excel_btn" class="btn btn-green">Selected Excel Download</button>';
+			// }
+			// if (options.isExcelDownloadButton) {
+			// 	h += '<button id="' + uid + '_excel_btn" class="btn btn-green">Excel Download</button>';
+			// }
+			// if (options.isExcelFormButton) {
+			// 	h += '<button id="' + uid + '_excelform_btn" class="btn btn-green">Excel Form</button>';
+			// }
 			//if (isSorting) {
 			//	h += '<button id="' + uid + '_sort_btn" class="btn btn-default">reset sorting</button>';
 			//}
@@ -135,13 +139,13 @@ var UserTable = function() {
 			h += '  <img src="img/loading-book.gif">';
 			h += ' </div>';
 			//h += '</div>';
-			h += '<div class="row">';
-			h += ' <div class="col-sm-5">';
-			h += '  <div class="dataTables_info" id="' + uid + '_polite" role="status" aria-live="polite"></div>';
-			h += ' </div>';
-			h += ' <div class="col-sm-7">';
-			h += '  <div id="' + uid + '_paginate" class="m-t-10"></div>';
-			h += ' </div>';
+			// h += '<div class="row">';
+			// h += ' <div class="col-sm-5">';
+			//h += '  <div class="dataTables_info" id="' + uid + '_polite" role="status" aria-live="polite"></div>';
+			// h += ' </div>';
+			// h += ' <div class="col-sm-7">';
+			// h += '  <div id="' + uid + '_paginate" class="m-t-10"></div>';
+			// h += ' </div>';
 			h += '</div>';
 
 			h += '</div>';
@@ -520,7 +524,7 @@ var UserTable = function() {
 						html += '</div>';
 						
 						$('#' + uid + '_paginate').html(html);
-						$('#' + uid + '_polite').text('total ' + t + ' count / ' + (n * p + 1) + ' ~ ' + (n * p + p) + '');
+						$('#' + uid + '_polite').text('Showing rows ' + (n * p + 1) + ' to ' + (n * p + p) + ' of ' + t);
 					}
 					
 					$('#' + uid + " table tbody td").css({'white-space' : 'nowrap'

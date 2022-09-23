@@ -9,14 +9,11 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    
     <script src="js/usertable.js"></script>
 	<link href="css/style2.css" rel="stylesheet">
 	<link href="css/font.css" rel="stylesheet">
 	<link href="css/table.css" rel="stylesheet">
 	<link href="fontawesome/font-awesome.css" rel="stylesheet">
-    <link href="css/jquery.modal.css" rel="stylesheet" />
     
     <script src="select2/select2.full.min.js"></script>
 	<link href="select2/css/select2.min.css" rel="stylesheet">
@@ -26,42 +23,21 @@
     <header>
         <div class="text-left" style="margin: 20px 15px; padding: 10px; background-color: lightsteelblue; border-radius: 4px;">
             <a class="btn" href="#">Orders</a>
-            <a class="btn" href="#accessioning" rel="modal:open">Accessioning <i class="fa fa-window-restore fa-1" aria-hidden="true"></i></a>
+            <a class="btn" href="#">Accessioning</a>
             <a class="btn" href="#">Reporting</a>
             <a class="btn" href="#">Quality Control</a>
             <a class="btn" href="#">Submit to States</a>
         </div>
 
     </header>
-    
-    <div id="accessioning" class="container">
 
-    </div>
-    
     <div class="container">
-        <div class="row">
-            <div class="col-20">
-                In All Fields
-                <input type="text">
-            </div>
-            <div class="col-20">
-                Patient Name
-                <input type="text">
-            </div>
-            <div class="col-20">
-                Order Barcodes
-                <input type="text">
-            </div>
-            <div class="col-20">
-                Provider Name
-                <input type="text">
-            </div>
-
-        </div>
 
         <div class="row">
+            <h4>Report Results</h4>
+
             <div class="col-20">
-                <label>Filter by Collection Date</label>
+                <label>Date</label>
                 <div class="date-container">
                     <input type="text" class="datepicker"> <i class="fa fa-calendar"></i>
                     <button>today</button>
@@ -72,38 +48,17 @@
                 </div>
             </div>
             <div class="col-20">
-                <label>Filter by Received Date</label>
-                <div class="date-container">
-                    <input type="text" class="datepicker"> <i class="fa fa-calendar"></i>
-                    <button>today</button>
-                </div>
-                <div class="date-container">
-                    <input type="text" class="datepicker"> <i class="fa fa-calendar"></i>
-                    <button>today</button>
-                </div>
+                <label>Accession Number</label>
+                From
+                <input type="text" style="width: 100px;">
+                To
+                <input type="text" style="width: 100px;">
             </div>
-            <div class="col-20">
-                <label>Filter by Reported Date</label>
-                <div class="date-container">
-                    <input type="text" class="datepicker"> <i class="fa fa-calendar"></i>
-                    <button>today</button>
-                </div>
-                <div class="date-container">
-                    <input type="text" class="datepicker"> <i class="fa fa-calendar"></i>
-                    <button>today</button>
-                </div>
-            </div>
-            <div class="col-20">
-                <label>Filter by Result</label>
-                <select>
-                    <option value="negative">negative</option>
-                    <option value="positive">positive</option>
-                    <option value="pending">pending</option>
-                </select>
-            </div>
+            
             <div class="col-15">
-                <button class="btn big">Reset</button>
-                <button class="btn big">Search</button>
+                <button class="btn big">Upload</button>
+                <button class="btn big">Edit</button>
+                <button class="btn big">Save</button>
             </div>
 
         </div>
@@ -119,9 +74,9 @@
     
     // #. 시작
     $(function() {
-        $(".datepicker").datepicker();
-
-        $("#accessioning").load("index1.html");
+        $(function () {
+            $(".datepicker").datepicker();
+        });
         
         var columns = [{
             title: '',

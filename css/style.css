@@ -112,9 +112,21 @@ input[type=button]:hover {
   padding: 10px;
 }
 
+.col-20 {
+  float: left;
+  width: 20%;
+  margin-top: 6px;
+}
+
 .col-25 {
   float: left;
   width: 25%;
+  margin-top: 6px;
+}
+
+.col-30 {
+  float: left;
+  width: 30%;
   margin-top: 6px;
 }
 
