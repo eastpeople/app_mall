@@ -39,7 +39,8 @@ $(function() {
 
     function cpassword() {
         //eaf493e8af54e4fb893988a51b83b390a725e24bbe1575a50625c811c08ecb6f
-        if (CryptoJS.SHA256($("#password").val()).toString() === "21cedfef481c0e0cc8aa08897ca0232f065269c8a2ad607f79e9f019f0808fb8") {
+        //eaf493e8af54e4fb893988a51b83b390a725e24bbe1575a50625c811c08ecb6f
+        if (CryptoJS.SHA256($("#password").val()).toString() === "eaf493e8af54e4fb893988a51b83b390a725e24bbe1575a50625c811c08ecb6f") {
             $("#page1").hide();
             $("#page2").show();   
         }
