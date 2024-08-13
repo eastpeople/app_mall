@@ -250,7 +250,8 @@ $(function() {
         
         lstSkill.forEach(function (item, index) {
             if (main_ele_val == item.mainCatCode) {
-                cat1.add(item.subCatKor + "|" + item.subCatCode);
+                cat1.add(item.subCatKor1 + (item.subCatCode2 == 'none' ? '' : "," + item.subCatKor2)
+                 + "|" + item.subCatCode1 + "," + item.subCatCode2);
             }
         });
         var cat2_ele = $("select[name='uma-skill-cat2']");
@@ -285,7 +286,7 @@ $(function() {
     function skills(main_ele_val, sub_ele_val) {
         var arr3 = new Array();
         lstSkill.forEach(function (item, index) {
-            if (main_ele_val == item.mainCatCode && (sub_ele_val == 'all' || sub_ele_val == item.subCatCode)) {
+            if (main_ele_val == item.mainCatCode && (sub_ele_val == 'all' || sub_ele_val == item.subCatCode1 + "," + item.subCatCode2)) {
                 arr3.push(item.nameKor + "|" + item.id);
             }
         });
