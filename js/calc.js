@@ -88,7 +88,7 @@ $(function() {
                 if (!isNaN(_temp)) _tt += _temp;
             });
 
-            $(_ele).nextAll('strong').first().text(statPoint(ura + _tt));
+            $(_ele).nextAll('strong').first().text(statPoint2(ura + _tt));
         });
 
 
@@ -346,7 +346,57 @@ $(function() {
     });
 
     function rank(pt) {
-        return pt < 300 ? ["G", "#676567"] : pt < 600 && pt >= 300 ? ["G+", "#676567"] : pt < 900 && pt >= 600 ? ["F", "#ada4ed"] : pt < 1300 && pt >= 900 ? ["F+", "#ada4ed"] : pt < 1800 && pt >= 1300 ? ["E", "#e18dfb"] : pt < 2300 && pt >= 1800 ? ["E+", "#e18dfb"] : pt < 2900 && pt >= 2300 ? ["D", "#6bc3ff"] : pt < 3500 && pt >= 2900 ? ["D+", "#6bc3ff"] : pt < 4900 && pt >= 3500 ? ["C", "#84db6b"] : pt < 6500 && pt >= 4900 ? ["C+", "#84db6b"] : pt < 8200 && pt >= 6500 ? ["B", "#f086a9"] : pt < 1e4 && pt >= 8200 ? ["B+", "#f086a9"] : pt < 12100 && pt >= 1e4 ? ["A", "#ffa35f"] : pt < 14500 && pt >= 12100 ? ["A+", "#ffa35f"] : pt < 15900 && pt >= 14500 ? ["S", "#eccf6c"] : pt < 17500 && pt >= 15900 ? ["S+", "#eccf6c"] : pt < 19200 && pt >= 17500 ? ["SS", "#eccf6c"] : pt < 19600 && pt >= 19200 ? ["SS+", "#eccf6c"] : pt < 2e4 && pt >= 19600 ? ["UG", "#eccf6c"] : pt < 20400 && pt >= 2e4 ? ["UG1", "#eccf6c"] : pt < 20800 && pt >= 20400 ? ["UG2", "#eccf6c"] : pt < 21200 && pt >= 20800 ? ["UG3", "#eccf6c"] : pt < 21600 && pt >= 21200 ? ["UG4", "#eccf6c"] : pt < 22100 && pt >= 21600 ? ["UG5", "#eccf6c"] : pt < 22500 && pt >= 22100 ? ["UG6", "#eccf6c"] : pt < 23e3 && pt >= 22500 ? ["UG7", "#eccf6c"] : pt < 23400 && pt >= 23e3 ? ["UG8", "#eccf6c"] : pt < 23900 && pt >= 23400 ? ["UG9", "#eccf6c"] : pt >= 23900 ? ["UF", "#eccf6c"] : ["", ""];
+        // return pt < 300 ? ["G", "#676567"] : pt < 600 && pt >= 300 ? ["G+", "#676567"] : pt < 900 && pt >= 600 ? ["F", "#ada4ed"] : pt < 1300 && pt >= 900 ? ["F+", "#ada4ed"] : pt < 1800 && pt >= 1300 ? ["E", "#e18dfb"] : pt < 2300 && pt >= 1800 ? ["E+", "#e18dfb"] : pt < 2900 && pt >= 2300 ? ["D", "#6bc3ff"] : pt < 3500 && pt >= 2900 ? ["D+", "#6bc3ff"] : pt < 4900 && pt >= 3500 ? ["C", "#84db6b"] : pt < 6500 && pt >= 4900 ? ["C+", "#84db6b"] : pt < 8200 && pt >= 6500 ? ["B", "#f086a9"] : pt < 1e4 && pt >= 8200 ? ["B+", "#f086a9"] : pt < 12100 && pt >= 1e4 ? ["A", "#ffa35f"] : pt < 14500 && pt >= 12100 ? ["A+", "#ffa35f"] : pt < 15900 && pt >= 14500 ? ["S", "#eccf6c"] : pt < 17500 && pt >= 15900 ? ["S+", "#eccf6c"] : pt < 19200 && pt >= 17500 ? ["SS", "#eccf6c"] : pt < 19600 && pt >= 19200 ? ["SS+", "#eccf6c"] : pt < 2e4 && pt >= 19600 ? ["UG", "#eccf6c"] : pt < 20400 && pt >= 2e4 ? ["UG1", "#eccf6c"] : pt < 20800 && pt >= 20400 ? ["UG2", "#eccf6c"] : pt < 21200 && pt >= 20800 ? ["UG3", "#eccf6c"] : pt < 21600 && pt >= 21200 ? ["UG4", "#eccf6c"] : pt < 22100 && pt >= 21600 ? ["UG5", "#eccf6c"] : pt < 22500 && pt >= 22100 ? ["UG6", "#eccf6c"] : pt < 23e3 && pt >= 22500 ? ["UG7", "#eccf6c"] : pt < 23400 && pt >= 23e3 ? ["UG8", "#eccf6c"] : pt < 23900 && pt >= 23400 ? ["UG9", "#eccf6c"] : pt >= 23900 ? ["UF", "#eccf6c"] : ["", ""];
+        return pt < 300 ? ["G", "#676567"] :
+        pt < 600 ? ["G+", "#676567"] :
+        pt < 900 ? ["F", "#ada4ed"] :
+        pt < 1300 ? ["F+", "#ada4ed"] :
+        pt < 1800 ? ["E", "#e18dfb"] :
+        pt < 2300 ? ["E+", "#e18dfb"] :
+        pt < 2900 ? ["D", "#6bc3ff"] :
+        pt < 3500 ? ["D+", "#6bc3ff"] :
+        pt < 4900 ? ["C", "#84db6b"] :
+        pt < 6500 ? ["C+", "#84db6b"] :
+        pt < 8200 ? ["B", "#f086a9"] :
+        pt < 10000 ? ["B+", "#f086a9"] :
+        pt < 12100 ? ["A", "#ffa35f"] :
+        pt < 14500 ? ["A+", "#ffa35f"] :
+        pt < 15900 ? ["S", "#eccf6c"] :
+        pt < 17500 ? ["S+", "#eccf6c"] :
+        pt < 19200 ? ["SS", "#eccf6c"] :
+        pt < 19600 ? ["SS+", "#eccf6c"] :
+        pt < 20000 ? ["UG", "#eccf6c"] :
+        pt < 20400 ? ["UG1", "#eccf6c"] :
+        pt < 20800 ? ["UG2", "#eccf6c"] :
+        pt < 21200 ? ["UG3", "#eccf6c"] :
+        pt < 21600 ? ["UG4", "#eccf6c"] :
+        pt < 22100 ? ["UG5", "#eccf6c"] :
+        pt < 22500 ? ["UG6", "#eccf6c"] :
+        pt < 23000 ? ["UG7", "#eccf6c"] :
+        pt < 23400 ? ["UG8", "#eccf6c"] :
+        pt < 23900 ? ["UG9", "#eccf6c"] :
+        pt < 24300 ? ["UF", "#eccf6c"] :
+        pt < 24800 ? ["UF1", "#eccf6c"] :
+        pt < 25300 ? ["UF2", "#eccf6c"] :
+        pt < 25800 ? ["UF3", "#eccf6c"] :
+        pt < 26300 ? ["UF4", "#eccf6c"] :
+        pt < 26800 ? ["UF5", "#eccf6c"] :
+        pt < 27300 ? ["UF6", "#eccf6c"] :
+        pt < 27800 ? ["UF7", "#eccf6c"] :
+        pt < 28300 ? ["UF8", "#eccf6c"] :
+        pt < 28800 ? ["UF9", "#eccf6c"] :
+        pt < 29400 ? ["UE", "#eccf6c"] :
+        pt < 29900 ? ["UE1", "#eccf6c"] :
+        pt < 30400 ? ["UE2", "#eccf6c"] :
+        pt < 31000 ? ["UE3", "#eccf6c"] :
+        pt < 31500 ? ["UE4", "#eccf6c"] :
+        pt < 32100 ? ["UE5", "#eccf6c"] :
+        pt < 32700 ? ["UE6", "#eccf6c"] :
+        pt < 33200 ? ["UE7", "#eccf6c"] :
+        pt < 33800 ? ["UE8", "#eccf6c"] :
+        pt >= 33800 ? ["UE9", "#eccf6c"] :
+        ["", ""];
+        
     }
 
     function totalPoint() {
@@ -357,11 +407,17 @@ $(function() {
             
             lstSkill.forEach(function (item, index) {
                 if (skillid == item.id) {
-                    var subcode = item.subCatCode;
+                    let subcode = item.subCatCode1;
                     var origin_pt = parseFloat(item.point);
                     var pt = origin_pt;
                     
-                    if (!",common,all".includes(subcode)) {
+                    if (!",common,none,all".includes(subcode)) {
+                        var per = parseFloat($("#uma-" + subcode).val());
+                        pt = Math.round(origin_pt * per / 100);
+                    }
+
+                    subcode = item.subCatCode2;
+                    if (!",common,none,all".includes(subcode)) {
                         var per = parseFloat($("#uma-" + subcode).val());
                         pt = Math.round(origin_pt * per / 100);
                     }
@@ -380,3 +436,62 @@ $(function() {
     }
     
 });
+
+
+// Variables and constants
+var t, a = 0, e = 0, n = "";
+
+const thresholds1 = [1643, 8587];
+const thresholds2 = [1865, 11931];
+
+const factors1 = [
+    0.5, 0.8, 1, 1.3, 1.6, 1.8, 2.1, 2.4, 2.6, 2.8, 2.9, 3, 3.1, 3.3, 3.4, 3.5, 
+    3.9, 4.1, 4.2, 4.3, 5.2, 5.5, 6.6, 6.8, 6.9
+];
+const factors2 = [
+    7.888, 8, 8.1, 8.3, 8.4, 8.5, 8.6, 8.8, 8.9, 9, 9.2, 9.3, 9.4, 9.6, 9.7, 9.8, 
+    10, 10.1, 10.2, 10.3, 10.5, 10.6, 10.7, 10.9, 11, 11.1, 11.3, 11.4, 11.5, 
+    11.7, 11.8, 11.9, 12.1, 12.2, 12.3, 12.4, 12.6, 12.7, 12.8, 13, 13.1, 13.2, 
+    13.4, 13.5, 13.6, 13.8, 13.9, 14, 14.1, 14.3, 14.4, 14.5, 14.7, 14.8, 14.9, 
+    15.1, 15.2, 15.3, 15.5, 15.6, 15.7, 15.9, 16, 16.1, 16.2, 16.4, 16.5, 16.6, 
+    16.8, 16.9, 17, 17.2, 17.3, 17.4, 17.6, 17.7, 17.8, 17.9, 18.1, 18.2, 18.3
+];
+
+// Helper function to calculate sum with factors
+function calculateSum(t, factors, limit) {
+    let total = 0;
+
+    for (let factor of factors) {
+        if (t > limit) {
+            total += limit * factor;
+            t -= limit;
+        } else {
+            total += t * factor;
+            break;
+        }
+    }
+
+    return total;
+}
+
+// Function to calculate stat points
+function statPoint2(t) {
+    if (t === thresholds1[0]) return thresholds1[1];
+    if (t === thresholds2[0]) return thresholds2[1];
+
+    if (t <= 1200) {
+        t += 1;
+        return Math.floor(calculateSum(t, factors1, 50));
+    }
+
+    if (t > 1200 && t <= 1209) {
+        return Math.ceil((t - 1200) * factors2[0]) + 3841;
+    }
+
+    if (t > 1209 && t <= 2000) {
+        t = t - 1210 + 1;
+        return Math.ceil(calculateSum(t, factors2.slice(1), 10)) + 3912;
+    }
+
+    return 0;
+}
